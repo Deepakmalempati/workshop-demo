@@ -1,0 +1,72 @@
+<!doctype HTML>
+<html>
+    <head>
+        <!-- get current Bootstrap Material Design styles from https://mdbootstrap.com/md-bootstrap-cdn/ -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-sm-1 container-fluid"></div>
+        <div id="product" class="col-sm-4 container-fluid">
+            <h1>{{  myname }}</h1>
+            <img v-bind:src="image" width="300px" height="500px">
+           
+        </div>
+        <div class="container-fluid col-md-5" style="margin: 60px;">
+                <p v-if="instock >=10">In stock</p>
+                <p v-else-if="instock >= 1 && instock < 10">Only 1 left in stock</p>
+                <p v-else>out of stock</p>
+                <ul>
+                    <li v-for="s in specs ">{{s}}</li>
+                </ul>
+                <p>Choose color and variant</p>
+                <p v-for="v in variant" @mouseover="updateimage(v.variantimage)">{{v.color}}</p>
+                <p v-for="v in variant">{{v.storage}}</p>
+                
+    
+                <button v-on:click="addtocart" :disabled="!instock">Add to Cart</button>
+                <button>Items {{items}}</button>
+                <button v-on:click="items -= 1">Remove from cart</button>
+    
+               
+        </div>
+        
+
+    </div><hr>
+    <div class="row container container-fluid">
+            <div class="col-sm-1 container-fluid"></div>
+        <div class="container-fluid col-md-4" >
+            <h2>Order Summary</h2>
+                <fieldset class="mt-4">
+                        
+                        Customer Name: <input v-model="customername" id="customername" type="text" minlength="2" maxlength="40">
+                      </fieldset>
+              
+                      <fieldset class="mt-4">
+                        <label for="firstNumber">Shipping Address:</label>
+                        <input v-model="address" id="address" type="text" >
+                        
+                      </fieldset>
+                      
+        </div>
+        <div class="container-fluid col-md-1">
+                <p>{{ displayorder }}</p>
+        </div>
+    </div>
+      
+              
+    </body>
+    <footer>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+
+<script src="index.js"></script>
+</html>
